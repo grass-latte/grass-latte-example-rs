@@ -20,6 +20,7 @@ fn main() {
         *val += 1;
         grass_latte::send_text(["Buttons", "Incrementer", "Value"], format!("{val}"), false);
     };
+    
     grass_latte::send_button_with_callback(
         ["Buttons", "Incrementer"],
         "Click button to increment".to_string(),
