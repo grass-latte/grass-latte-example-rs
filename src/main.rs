@@ -4,7 +4,7 @@ use std::thread;
 use std::time::Duration;
 
 fn main() {
-    grass_latte::set_port_range((3030, 3030));
+    grass_latte::set_port_range((3030, 3035));
     grass_latte::serve_webpage();
     grass_latte::clear_widgets();
 
@@ -12,7 +12,7 @@ fn main() {
         thread::sleep(Duration::from_millis(200));
     }
     grass_latte::delete_widget(["Start"]);
-    
+
     let counter = Arc::new(Mutex::new(0));
     let callback = move || {
         let val = counter.clone();
@@ -20,10 +20,10 @@ fn main() {
         *val += 1;
         grass_latte::send_text(["Buttons", "Incrementer", "Value"], format!("{val}"), false);
     };
-    
+
     grass_latte::send_button_with_callback(
         ["Buttons", "Incrementer"],
-        "Click button to increment".to_string(),
+        "Click button to increment",
         false,
         callback.clone(),
     );
