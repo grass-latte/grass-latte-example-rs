@@ -6,13 +6,13 @@ use std::time::Duration;
 fn main() {
     grass_latte::set_port_range((3030, 3030));
     grass_latte::serve_webpage();
-    grass_latte::clear();
+    grass_latte::clear_widgets();
 
     while !grass_latte::poll_button(["Start"], "Start", false) {
         thread::sleep(Duration::from_millis(200));
     }
-    grass_latte::delete_element(["Start"]);
-
+    grass_latte::delete_widget(["Start"]);
+    
     let counter = Arc::new(Mutex::new(0));
     let callback = move || {
         let val = counter.clone();
